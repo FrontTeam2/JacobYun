@@ -25,7 +25,7 @@ function App() {
     };
     getData();
   }, []);
-  console.log(isData);
+  console.log(isData); //데이터 확인
   return <>{isData && <button>확인하기</button>}</>;
 }
 
