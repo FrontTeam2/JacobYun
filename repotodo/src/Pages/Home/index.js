@@ -1,19 +1,35 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import useInputs from "../../hooks/useInputs";
 
 function HomePage() {
+  const [{ owner, repository }, onChange] = useInputs({
+    owner: "",
+    repository: "",
+  });
   const navigate = useNavigate();
-
-  const onClickList = () => {
-    navigate("/list");
+  const onClickList = (owner, repository) => {
+    navigate(`/${owner}/${repository}/issues`);
   };
   return (
     <>
       <HomeItem>
         <HomeDiv>
           <h1>환영합니다</h1>
-          <h2>지금 바로 깃허브 이슈를 보러갈까요?</h2>
-          <button onClick={onClickList}>보러가기</button>
+          <h2>지금 바로 원하는 깃허브 이슈를 보러갈까요?</h2>
+          <input
+            placeholder="plz type in Owner "
+            name="owner"
+            onChange={onChange}
+          />
+          <input
+            placeholder="plz type in Repo"
+            name="repository"
+            onChange={onChange}
+          />
+          <button onClick={() => onClickList(owner, repository)}>
+            보러가기
+          </button>
         </HomeDiv>
       </HomeItem>
     </>
